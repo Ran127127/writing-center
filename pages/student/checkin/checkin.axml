@@ -1,0 +1,32 @@
+<!-- pages/student/checkin/checkin.axml —— 钉钉版 -->
+<view class="container">
+  <view a:if="{{booking}}" class="card">
+    <view class="checkin-info">
+      <view class="info-row"><text class="info-label">上课日期</text><text class="info-value">{{booking.date}} {{booking.day}}</text></view>
+      <view class="info-row"><text class="info-label">上课时间</text><text class="info-value">{{booking.time}}</text></view>
+      <view class="info-row"><text class="info-label">预约问题</text><text class="info-value">{{booking.problem}}</text></view>
+    </view>
+
+    <!-- 签到成功 -->
+    <view a:if="{{checkinDone}}" class="checkin-success">
+      <view class="success-icon">✅</view>
+      <view class="success-text">签到成功</view>
+      <view class="success-time">{{checkinTime}}</view>
+    </view>
+
+    <!-- 未开放签到 -->
+    <view a:elif="{{!canCheckin}}" class="checkin-wait">
+      <view class="wait-icon">⏰</view>
+      <view class="wait-text">距签到开放时间</view>
+      <view class="countdown">{{countdown || '计算中...'}}</view>
+      <view class="wait-hint">上课前30分钟至上课后10分钟内可签到</view>
+    </view>
+
+    <!-- 可签到 -->
+    <view a:else>
+      <button class="btn btn-primary checkin-btn" onTap="doCheckin">📍 立即签到</button>
+    </view>
+  </view>
+
+  <view a:else class="empty"><text>暂无预约信息</text></view>
+</view>

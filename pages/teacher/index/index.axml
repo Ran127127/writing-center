@@ -1,0 +1,40 @@
+<!-- pages/teacher/index/index.axml —— 钉钉版 -->
+<view class="container">
+
+  <!-- 通知区 -->
+  <view class="section-title">🔔 待确认通知</view>
+  <view a:if="{{loading}}" class="empty"><text>加载中...</text></view>
+  <view a:elif="{{notifications.length === 0}}" class="empty"><text>暂无通知</text></view>
+  <block a:else a:for="{{notifications}}" a:key="id">
+    <view class="card notif-card {{item.confirmed ? 'notif-confirmed' : ''}}">
+      <view class="notif-msg">{{item.message}}</view>
+      <view class="notif-footer">
+        <text class="notif-time">{{item.time}}</text>
+        <button a:if="{{!item.confirmed}}"
+                class="btn btn-primary btn-small"
+                onTap="confirmNotification" data-id="{{item.id}}">确认查收</button>
+        <view a:else class="tag tag-success">已确认</view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 本周上课安排 -->
+  <view class="section-title">📅 本周上课安排</view>
+  <view a:if="{{upcomingSlots.length === 0}}" class="empty"><text>本周暂无上课安排</text></view>
+  <block a:for="{{upcomingSlots}}" a:key="id">
+    <view class="card schedule-card">
+      <view class="sch-top">
+        <view class="sch-time">{{item.date}} {{item.day}} {{item.time}}</view>
+        <view class="tag {{item.checkinDone ? 'tag-success' : 'tag-warning'}}">
+          {{item.checkinDone ? '已签到' : '待上课'}}
+        </view>
+      </view>
+      <view class="info-row"><text class="info-label">学生姓名</text><text class="info-value">{{item.studentName}}（{{item.studentId}}）</text></view>
+      <view class="info-row"><text class="info-label">预约问题</text><text class="info-value">{{item.problem}}</text></view>
+      <button a:if="{{!item.checkinDone}}" class="btn btn-default btn-small sch-btn"
+              onTap="markCheckin" data-id="{{item.id}}">标记学生已到</button>
+    </view>
+  </block>
+
+  <view style="height:40rpx;"></view>
+</view>

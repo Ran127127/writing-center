@@ -1,0 +1,16 @@
+/* pages/admin/schedule/schedule.acss */
+.form-title  { font-size:30rpx; font-weight:600; margin-bottom:20rpx; }
+.form-item   { margin-bottom:22rpx; }
+.form-label  { font-size:26rpx; color:#555; display:block; margin-bottom:10rpx; }
+.form-input  {
+  width:100%; height:80rpx; background:#f8f8f8; border-radius:10rpx;
+  padding:0 20rpx; font-size:28rpx; box-sizing:border-box; border:none;
+}
+.slot-row   {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:16rpx; padding:20rpx 24rpx;
+}
+.slot-main        { flex:1; }
+.slot-time-text   { font-size:28rpx; font-weight:600; color:#333; margin-bottom:6rpx; }
+.slot-meta        { font-size:24rpx; color:#888; }
+.del-btn          { flex-shrink:0; margin-left:20rpx; width:120rpx; }

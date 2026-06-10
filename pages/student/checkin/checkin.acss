@@ -1,0 +1,10 @@
+/* pages/student/checkin/checkin.acss */
+.checkin-info { margin-bottom:24rpx; }
+.checkin-success,.checkin-wait { text-align:center; padding:40rpx 0; }
+.success-icon,.wait-icon { font-size:80rpx; margin-bottom:16rpx; }
+.success-text { font-size:36rpx; font-weight:700; color:#09b56d; margin-bottom:12rpx; }
+.success-time { font-size:26rpx; color:#888; }
+.wait-text    { font-size:28rpx; color:#555; margin-bottom:16rpx; }
+.countdown    { font-size:40rpx; font-weight:700; color:#1677ff; margin-bottom:16rpx; }
+.wait-hint    { font-size:24rpx; color:#aaa; }
+.checkin-btn  { margin-top:16rpx; }

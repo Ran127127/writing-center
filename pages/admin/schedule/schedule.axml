@@ -1,0 +1,38 @@
+<!-- pages/admin/schedule/schedule.axml —— 钉钉版 -->
+<view class="container">
+
+  <!-- 发布表单 -->
+  <view class="card">
+    <view class="form-title">➕ 新增时段</view>
+    <view class="form-item">
+      <text class="form-label">日期（YYYY-MM-DD）</text>
+      <input class="form-input" value="{{form.date}}" onInput="onInput" data-field="date" placeholder="如：2026-06-09" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">时间段</text>
+      <input class="form-input" value="{{form.time}}" onInput="onInput" data-field="time" placeholder="如：09:00-10:00" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">名额（人数）</text>
+      <input class="form-input" type="number" value="{{form.quota}}" onInput="onInput" data-field="quota" placeholder="1" />
+    </view>
+    <button class="btn btn-primary" loading="{{submitting}}" disabled="{{submitting}}" onTap="publishSlot">
+      {{submitting ? '发布中...' : '发布时段'}}
+    </button>
+  </view>
+
+  <!-- 已发布列表 -->
+  <view class="section-title">📋 已发布时段</view>
+  <view a:if="{{loading}}" class="empty"><text>加载中...</text></view>
+  <block a:else a:for="{{slots}}" a:key="id">
+    <view class="card slot-row">
+      <view class="slot-main">
+        <view class="slot-time-text">{{item.date}} {{item.day}} {{item.time}}</view>
+        <view class="slot-meta">名额 {{item.quota}} | 已约 {{item.booked}}</view>
+      </view>
+      <button class="btn btn-danger btn-small del-btn" onTap="deleteSlot" data-id="{{item.id}}">删除</button>
+    </view>
+  </block>
+
+  <view style="height:40rpx;"></view>
+</view>

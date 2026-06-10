@@ -1,0 +1,66 @@
+<!-- pages/student/index/index.axml —— 钉钉版 -->
+<view class="container">
+
+  <!-- 我的预约 -->
+  <view a:if="{{myBooking}}" class="card my-booking-card">
+    <view class="booking-header">
+      <text class="booking-title">📅 我的本周预约</text>
+      <view class="tag tag-primary">已预约</view>
+    </view>
+    <view class="booking-info">
+      <view class="info-row">
+        <text class="info-label">上课时间</text>
+        <text class="info-value">{{myBooking.date}} {{myBooking.day}} {{myBooking.time}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">预约问题</text>
+        <text class="info-value ellipsis">{{myBooking.problem}}</text>
+      </view>
+    </view>
+    <view class="booking-actions">
+      <button class="btn btn-primary btn-small" onTap="viewMyBooking">去签到</button>
+      <button class="btn btn-danger btn-small" onTap="cancelBooking">取消预约</button>
+    </view>
+  </view>
+
+  <!-- 发布时间提示 -->
+  <view class="notice-bar" a:if="{{!loading}}">
+    <text class="notice-icon">🕐</text>
+    <text class="notice-text">每周三 12:30 发布下周可预约时段</text>
+  </view>
+
+  <!-- 时段列表 -->
+  <view class="section-title">📋 可预约时段</view>
+
+  <view a:if="{{loading}}" class="empty">
+    <text>加载中...</text>
+  </view>
+
+  <view a:elif="{{weekSlots.length === 0}}" class="empty">
+    <text>暂无可预约时段，请等待管理员发布</text>
+  </view>
+
+  <view a:else>
+    <block a:for="{{weekSlots}}" a:key="id">
+      <view class="slot-card {{item.status === 'full' ? 'slot-full' : ''}}"
+            onTap="toBooking" data-slot="{{item}}">
+        <view class="slot-left">
+          <view class="slot-day">{{item.day}}</view>
+          <view class="slot-date">{{item.date}}</view>
+          <view class="slot-time">{{item.time}}</view>
+        </view>
+        <view class="slot-right">
+          <view class="slot-remain">
+            <text a:if="{{item.status !== 'full'}}" class="remain-num">剩余 {{item.remain}} 名额</text>
+            <text a:else class="full-text">已约满</text>
+          </view>
+          <view class="tag {{item.status === 'full' ? 'tag-danger' : 'tag-success'}}">
+            {{item.status === 'full' ? '已满' : '可约'}}
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view style="height:40rpx;"></view>
+</view>

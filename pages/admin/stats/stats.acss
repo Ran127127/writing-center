@@ -1,0 +1,35 @@
+/* pages/admin/stats/stats.acss */
+.semester-bar {
+  background:#1677ff; color:#fff; border-radius:14rpx;
+  text-align:center; padding:20rpx; font-size:28rpx;
+  font-weight:500; margin-bottom:20rpx;
+}
+.stat-grid {
+  display:grid; grid-template-columns:1fr 1fr 1fr;
+  gap:20rpx 0;
+}
+.stat-item  { text-align:center; }
+.stat-num   { font-size:44rpx; font-weight:700; color:#1677ff; }
+.stat-num.warn    { color:#fa8c16; }
+.stat-num.danger  { color:#ff4d4f; }
+.stat-num.success { color:#09b56d; }
+.stat-label { font-size:22rpx; color:#888; margin-top:4rpx; }
+
+.tab-bar {
+  display:flex; background:#fff; border-radius:14rpx;
+  overflow:hidden; margin-bottom:16rpx;
+  box-shadow:0 2rpx 10rpx rgba(0,0,0,.05);
+}
+.tab-item {
+  flex:1; text-align:center; padding:22rpx 0;
+  font-size:28rpx; color:#666;
+}
+.tab-active { color:#1677ff; border-bottom:4rpx solid #1677ff; font-weight:600; }
+
+.stu-card   { margin-bottom:16rpx; }
+.stu-top    { display:flex; justify-content:space-between; align-items:center; margin-bottom:10rpx; }
+.stu-name   { font-size:30rpx; font-weight:600; color:#222; }
+.stu-id     { font-size:24rpx; color:#888; font-weight:400; margin-left:12rpx; }
+.stu-row    { display:flex; gap:24rpx; flex-wrap:wrap; }
+.stu-meta   { font-size:24rpx; color:#888; }
+.lift-btn   { margin-top:14rpx; }

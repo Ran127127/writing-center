@@ -1,0 +1,54 @@
+<!-- pages/student/evaluation/evaluation.axml —— 钉钉版 -->
+<view class="container">
+
+  <!-- 已提交 -->
+  <view a:if="{{submitted}}" class="card submitted-card">
+    <view class="submitted-icon">🎉</view>
+    <view class="submitted-text">评价已提交，感谢您的反馈！</view>
+  </view>
+
+  <!-- 评价表单 -->
+  <view a:else>
+    <view class="card" a:if="{{booking}}">
+      <view class="eval-course">课程：{{booking.date}} {{booking.day}} {{booking.time}}</view>
+    </view>
+
+    <view class="card">
+      <!-- Q1 -->
+      <view class="q-title">1. 本次上课是否有迟到或早退？<text class="required">*</text></view>
+      <view class="radio-group">
+        <view class="radio-item {{form.lateOrLeave === '无' ? 'radio-selected' : ''}}"
+              onTap="onInput" data-field="lateOrLeave" data-value="无">无</view>
+        <view class="radio-item {{form.lateOrLeave === '迟到' ? 'radio-selected' : ''}}"
+              onTap="onInput" data-field="lateOrLeave" data-value="迟到">迟到</view>
+        <view class="radio-item {{form.lateOrLeave === '早退' ? 'radio-selected' : ''}}"
+              onTap="onInput" data-field="lateOrLeave" data-value="早退">早退</view>
+      </view>
+
+      <!-- Q2 -->
+      <view class="q-title">2. 您的问题是否在本次上课中得到了解决？<text class="required">*</text></view>
+      <view class="radio-group">
+        <view class="radio-item {{form.solved === '完全解决' ? 'radio-selected' : ''}}"
+              onTap="onInput" data-field="solved" data-value="完全解决">完全解决</view>
+        <view class="radio-item {{form.solved === '部分解决' ? 'radio-selected' : ''}}"
+              onTap="onInput" data-field="solved" data-value="部分解决">部分解决</view>
+        <view class="radio-item {{form.solved === '未解决' ? 'radio-selected' : ''}}"
+              onTap="onInput" data-field="solved" data-value="未解决">未解决</view>
+      </view>
+
+      <!-- Q3 -->
+      <view class="q-title">3. 您对本次上课的评分（1-100）</view>
+      <view class="score-row">
+        <slider min="1" max="100" value="{{form.score}}" onChange="onScoreChange"
+                activeColor="#1677ff" backgroundColor="#e0e0e0" handleSize="22" block-size="22" class="score-slider"/>
+        <text class="score-value">{{form.score}} 分</text>
+      </view>
+    </view>
+
+    <button class="btn btn-primary" loading="{{submitting}}" disabled="{{submitting}}" onTap="submitEval">
+      {{submitting ? '提交中...' : '提交评价'}}
+    </button>
+  </view>
+
+  <view style="height:40rpx;"></view>
+</view>

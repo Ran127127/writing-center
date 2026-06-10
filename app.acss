@@ -1,0 +1,104 @@
+/* app.acss —— 全局样式（钉钉版） */
+page {
+  font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  font-size: 28rpx;
+  color: #333;
+  background: #f5f6fa;
+  box-sizing: border-box;
+}
+
+/* ── 通用容器 ── */
+.container {
+  padding: 24rpx;
+  min-height: 100vh;
+}
+
+/* ── 卡片 ── */
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 28rpx 28rpx 20rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,.06);
+}
+
+/* ── 标签 ── */
+.tag {
+  display: inline-block;
+  font-size: 22rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 100rpx;
+  font-weight: 500;
+}
+.tag-primary { background:#e6f0ff; color:#1677ff; }
+.tag-success { background:#e6f9f0; color:#09b56d; }
+.tag-danger  { background:#fff1f0; color:#ff4d4f; }
+.tag-warning { background:#fffbe6; color:#fa8c16; }
+
+/* ── 按钮 ── */
+.btn {
+  display: block;
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  border: none;
+}
+.btn-primary  { background:#1677ff; color:#fff; }
+.btn-danger   { background:#ff4d4f; color:#fff; }
+.btn-default  { background:#f0f0f0; color:#333; }
+.btn-small    { height:64rpx; line-height:64rpx; font-size:26rpx; border-radius:32rpx; }
+
+/* ── 分区标题 ── */
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #222;
+  margin: 24rpx 0 16rpx;
+}
+
+/* ── 空状态 ── */
+.empty {
+  text-align: center;
+  padding: 80rpx 0;
+  color: #aaa;
+  font-size: 28rpx;
+}
+
+/* ── info 行 ── */
+.info-row {
+  display: flex;
+  margin-bottom: 12rpx;
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+.info-label {
+  color: #888;
+  width: 140rpx;
+  flex-shrink: 0;
+}
+.info-value {
+  color: #333;
+  flex: 1;
+}
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* ── 通知栏 ── */
+.notice-bar {
+  display: flex;
+  align-items: center;
+  background: #e6f0ff;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+  margin-bottom: 20rpx;
+  font-size: 26rpx;
+  color: #1677ff;
+}
+.notice-icon { margin-right: 10rpx; }

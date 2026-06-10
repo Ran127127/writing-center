@@ -1,0 +1,10 @@
+/* pages/teacher/index/index.acss */
+.notif-card    { margin-bottom:18rpx; }
+.notif-confirmed { opacity:.7; }
+.notif-msg     { font-size:28rpx; color:#333; margin-bottom:16rpx; line-height:1.6; }
+.notif-footer  { display:flex; align-items:center; justify-content:space-between; }
+.notif-time    { font-size:24rpx; color:#aaa; }
+.schedule-card { margin-bottom:18rpx; }
+.sch-top       { display:flex; align-items:center; justify-content:space-between; margin-bottom:12rpx; }
+.sch-time      { font-size:28rpx; font-weight:600; color:#1677ff; }
+.sch-btn       { margin-top:12rpx; }

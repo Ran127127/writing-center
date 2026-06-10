@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/student/index/index",
+    "pages/student/booking/booking",
+    "pages/student/checkin/checkin",
+    "pages/student/evaluation/evaluation",
+    "pages/teacher/index/index",
+    "pages/teacher/confirm/confirm",
+    "pages/admin/index/index",
+    "pages/admin/schedule/schedule",
+    "pages/admin/stats/stats"
+  ],
+  "tabBar": {
+    "textColor": "#666666",
+    "selectedColor": "#1677ff",
+    "backgroundColor": "#ffffff",
+    "items": [
+      {
+        "pagePath": "pages/student/index/index",
+        "name": "预约"
+      },
+      {
+        "pagePath": "pages/teacher/index/index",
+        "name": "老师"
+      },
+      {
+        "pagePath": "pages/admin/index/index",
+        "name": "管理"
+      }
+    ]
+  },
+  "window": {
+    "defaultTitle": "智慧约课",
+    "titleBarColor": "#1677ff",
+    "pullRefresh": false
+  }
+}

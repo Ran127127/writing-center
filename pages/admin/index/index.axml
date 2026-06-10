@@ -1,0 +1,45 @@
+<!-- pages/admin/index/index.axml —— 钉钉版 -->
+<view xmlns:a="https://dingtalk.com" class="container">
+
+  <!-- 数据总览 -->
+  <view class="section-title"> 本学期概况</view>
+  <view class="overview-grid">
+    <view class="ov-item"><view class="ov-num">{{overview.totalSlots}}</view><view class="ov-label">发布时段</view></view>
+    <view class="ov-item"><view class="ov-num">{{overview.totalClass}}</view><view class="ov-label">实际上课</view></view>
+    <view class="ov-item"><view class="ov-num">{{overview.totalStudents}}</view><view class="ov-label">服务学生</view></view>
+    <view class="ov-item"><view class="ov-num score">{{overview.avgScore}}</view><view class="ov-label">平均评分</view></view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="card-row">
+    <view class="shortcut-card" onTap="toSchedule">
+      <view class="shortcut-icon">📅</view>
+      <view class="shortcut-text">发布时段</view>
+    </view>
+    <view class="shortcut-card" onTap="toStats">
+      <view class="shortcut-icon">📈</view>
+      <view class="shortcut-text">数据统计</view>
+    </view>
+  </view>
+
+  <!-- 待处理违规 -->
+  <view class="section-title">⚠️ 待处理（爽约/违规）</view>
+  <view a:if="{{loading}}" class="empty"><text>加载中...</text></view>
+  <view a:elif="{{pendingList.length === 0}}" class="empty"><text>暂无待处理事项</text></view>
+  <block a:else a:for="{{pendingList}}" a:key="id">
+    <view class="card pending-card">
+      <view class="pending-top">
+        <text class="pending-name">{{item.name}}（{{item.studentId}}）</text>
+        <view class="tag {{item.suspended ? 'tag-danger' : 'tag-warning'}}">
+          {{item.suspended ? '已暂停' : '待处理'}}
+        </view>
+      </view>
+      <view class="info-row"><text class="info-label">课程时间</text><text class="info-value">{{item.date}} {{item.time}}</text></view>
+      <view class="info-row"><text class="info-label">问题描述</text><text class="info-value">{{item.issue}}</text></view>
+      <button a:if="{{!item.suspended}}" class="btn btn-danger btn-small suspend-btn"
+              onTap="suspendStudent" data-id="{{item.id}}">暂停本周报名资格</button>
+    </view>
+  </block>
+
+  <view style="height:40rpx;"></view>
+</view>

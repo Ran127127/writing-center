@@ -1,0 +1,90 @@
+<!-- pages/admin/stats/stats.axml —— 钉钉版 -->
+<view class="container">
+
+  <!-- 学期标题 -->
+  <view class="semester-bar">{{semester}}</view>
+
+  <!-- 汇总数据 -->
+  <view class="card">
+    <view class="stat-grid">
+      <view class="stat-item">
+        <view class="stat-num">{{summary.totalPublished}}</view>
+        <view class="stat-label">发布时段</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-num">{{summary.totalClass}}</view>
+        <view class="stat-label">实际上课</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-num warn">{{summary.cancelRate}}</view>
+        <view class="stat-label">取消率</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-num danger">{{summary.noShowRate}}</view>
+        <view class="stat-label">爽约率</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-num success">{{summary.avgScore}}</view>
+        <view class="stat-label">平均评分</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-num">{{summary.evalCount}}</view>
+        <view class="stat-label">评价次数</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Tab 切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === 'all' ? 'tab-active' : ''}}"
+          onTap="switchTab" data-tab="all">全部学生</view>
+    <view class="tab-item {{activeTab === 'suspended' ? 'tab-active' : ''}}"
+          onTap="switchTab" data-tab="suspended">违规暂停（{{suspendedList.length}}）</view>
+  </view>
+
+  <!-- 全部学生列表 -->
+  <view a:if="{{activeTab === 'all'}}">
+    <view a:if="{{loading}}" class="empty"><text>加载中...</text></view>
+    <block a:else a:for="{{studentList}}" a:key="id">
+      <view class="card stu-card">
+        <view class="stu-top">
+          <view class="stu-name">
+            {{item.name}}
+            <text class="stu-id">{{item.studentId}}</text>
+          </view>
+          <view class="tag {{item.suspended ? 'tag-danger' : 'tag-success'}}">
+            {{item.suspended ? '已暂停' : '正常'}}
+          </view>
+        </view>
+        <view class="stu-row">
+          <text class="stu-meta">{{item.grade}} {{item.major}}</text>
+          <text class="stu-meta">上课 {{item.classCount}} 次</text>
+          <text class="stu-meta">评分 {{item.evalScore > 0 ? item.evalScore + '分' : '—'}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 违规暂停列表 -->
+  <view a:elif="{{activeTab === 'suspended'}}">
+    <view a:if="{{suspendedList.length === 0}}" class="empty"><text>暂无违规学生 🎉</text></view>
+    <block a:else a:for="{{suspendedList}}" a:key="id">
+      <view class="card stu-card">
+        <view class="stu-top">
+          <view class="stu-name">
+            {{item.name}}
+            <text class="stu-id">{{item.studentId}}</text>
+          </view>
+          <view class="tag tag-danger">已暂停</view>
+        </view>
+        <view class="stu-row">
+          <text class="stu-meta">{{item.grade}} {{item.major}}</text>
+        </view>
+        <button class="btn btn-default btn-small lift-btn"
+                onTap="liftSuspension" data-id="{{item.id}}">解除暂停</button>
+      </view>
+    </block>
+  </view>
+
+  <view style="height:40rpx;"></view>
+</view>

@@ -1,0 +1,4 @@
+/* pages/teacher/confirm/confirm.acss */
+.booking-card { margin-bottom:18rpx; }
+.bk-header    { display:flex; justify-content:space-between; align-items:center; margin-bottom:12rpx; }
+.bk-time      { font-size:28rpx; font-weight:600; color:#1677ff; }

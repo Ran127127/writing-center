@@ -1,0 +1,17 @@
+<!-- pages/teacher/confirm/confirm.axml —— 钉钉版 -->
+<view class="container">
+  <view a:if="{{loading}}" class="empty"><text>加载中...</text></view>
+  <view a:elif="{{bookings.length === 0}}" class="empty"><text>暂无预约学生</text></view>
+  <block a:else a:for="{{bookings}}" a:key="id">
+    <view class="card booking-card">
+      <view class="bk-header">
+        <text class="bk-time">{{item.date}} {{item.day}} {{item.time}}</text>
+        <view class="tag tag-primary">已预约</view>
+      </view>
+      <view class="info-row"><text class="info-label">姓名</text><text class="info-value">{{item.studentName}}（{{item.studentId}}）</text></view>
+      <view class="info-row"><text class="info-label">年级专业</text><text class="info-value">{{item.grade}} {{item.major}}</text></view>
+      <view class="info-row"><text class="info-label">预约问题</text><text class="info-value">{{item.problem}}</text></view>
+    </view>
+  </block>
+  <view style="height:40rpx;"></view>
+</view>

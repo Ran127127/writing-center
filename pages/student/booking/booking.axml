@@ -1,0 +1,56 @@
+<!-- pages/student/booking/booking.axml —— 钉钉版 -->
+<view class="container">
+  <!-- 时段信息 -->
+  <view class="card slot-info-card">
+    <view class="slot-info-title">📌 预约时段</view>
+    <view class="info-row"><text class="info-label">日期</text><text class="info-value">{{date}} {{day}}</text></view>
+    <view class="info-row"><text class="info-label">时间</text><text class="info-value">{{time}}</text></view>
+  </view>
+
+  <!-- 填写表单 -->
+  <view class="card">
+    <view class="form-title">📝 填写报名信息</view>
+
+    <view class="form-item">
+      <text class="form-label">姓名 <text class="required">*</text></text>
+      <input class="form-input" value="{{form.name}}" onInput="onInput" data-field="name" placeholder="请输入姓名" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">学号 <text class="required">*</text></text>
+      <input class="form-input" value="{{form.studentId}}" onInput="onInput" data-field="studentId" placeholder="请输入学号" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">年级 <text class="required">*</text></text>
+      <input class="form-input" value="{{form.grade}}" onInput="onInput" data-field="grade" placeholder="如：2023级" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">专业 <text class="required">*</text></text>
+      <input class="form-input" value="{{form.major}}" onInput="onInput" data-field="major" placeholder="请输入专业" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">需解决的问题 <text class="required">*</text></text>
+      <textarea class="form-textarea" value="{{form.problem}}" onInput="onInput" data-field="problem"
+        placeholder="请描述你希望在本次上课中解决的问题，至少20字" maxlength="500" />
+    </view>
+
+    <!-- 材料上传 -->
+    <view class="form-item">
+      <text class="form-label">上传材料（可选）</text>
+      <view class="material-list">
+        <view a:for="{{form.materials}}" a:key="index" class="material-item">
+          <text class="material-name">{{item.name}}</text>
+          <text class="material-del" onTap="removeMaterial" data-idx="{{index}}">✕</text>
+        </view>
+      </view>
+      <button a:if="{{form.materials.length < 3}}" class="btn btn-default btn-small upload-btn" onTap="uploadMaterial">
+        + 上传图片/材料
+      </button>
+    </view>
+  </view>
+
+  <button class="btn btn-primary" loading="{{submitting}}" disabled="{{submitting}}" onTap="submitBooking">
+    {{submitting ? '提交中...' : '确认预约'}}
+  </button>
+
+  <view style="height:40rpx;"></view>
+</view>
