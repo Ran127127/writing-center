@@ -25,13 +25,17 @@ function isMoreThanNHoursAway(targetTimestamp, n) {
   return (targetTimestamp - Date.now()) > n * 3600 * 1000;
 }
 
-/** 本周三 12:30 时间戳 */
+/** 本周三 12:30 时间戳（若已过则返回下周三） */
 function getThisWednesdayNoon() {
   const now  = new Date();
   const diff = (3 - now.getDay() + 7) % 7;
   const wed  = new Date(now);
-  wed.setDate(now.getDate() + (diff === 0 ? 0 : diff));
+  wed.setDate(now.getDate() + (diff === 0 ? 7 : diff));
   wed.setHours(12, 30, 0, 0);
+  // 如果算出的是本周三但已过 12:30，返回下周三
+  if (wed.getTime() <= now.getTime()) {
+    wed.setDate(wed.getDate() + 7);
+  }
   return wed.getTime();
 }
 

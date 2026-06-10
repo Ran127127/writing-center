@@ -8,7 +8,7 @@ Page({
     weekSlots: [],
     myBooking: null,
     loading: true,
-    publishTime: '',
+    _loaded: false,
   },
 
   onLoad() {
@@ -18,7 +18,9 @@ Page({
   },
 
   onShow() {
-    this.loadData();
+    if (this.data._loaded) {
+      this.loadData();
+    }
   },
 
   async loadData() {
@@ -32,6 +34,7 @@ Page({
         weekSlots: slots,
         myBooking,
         loading: false,
+        _loaded: true,
         publishTime: util.formatDateTime(new Date(nextWed)),
       });
     } catch (e) {
@@ -78,7 +81,7 @@ Page({
     if (slot.status === 'full') { util.showToast('该时段已约满'); return; }
     if (this.data.myBooking)    { util.showToast('本周已有预约，不可重复预约'); return; }
     dd.navigateTo({
-      url: `/pages/student/booking/booking?slotId=${slot.id}&date=${slot.date}&time=${slot.time}&day=${slot.day}`,
+      url: `/pages/student/booking/booking?slotId=${slot.id}&date=${slot.date}&time=${slot.time}&day=${encodeURIComponent(slot.day)}`,
     });
   },
 

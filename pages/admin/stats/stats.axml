@@ -64,8 +64,6 @@
       </view>
     </block>
   </view>
-
-  <!-- 违规暂停列表 -->
   <view a:elif="{{activeTab === 'suspended'}}">
     <view a:if="{{suspendedList.length === 0}}" class="empty"><text>暂无违规学生 🎉</text></view>
     <block a:else a:for="{{suspendedList}}" a:key="id">

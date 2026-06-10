@@ -11,14 +11,25 @@ Page({
 
   onLoad() {
     const booking = util.getStorage('myBooking');
-    if (!booking) { util.showToast('未找到课程信息'); return; }
+    if (!booking) {
+      util.showToast('未找到课程信息');
+      setTimeout(() => { dd.navigateBack(); }, 1500);
+      return;
+    }
     const evalDone = util.getStorage(`eval_${booking.slotId}`);
     this.setData({ submitted: !!evalDone, booking });
   },
 
+  // 文本输入框（input / textarea）
   onInput(e) {
     const { field } = e.currentTarget.dataset;
     this.setData({ [`form.${field}`]: e.detail.value });
+  },
+
+  // 单选按钮（view tap）
+  onRadioSelect(e) {
+    const { field, value } = e.currentTarget.dataset;
+    this.setData({ [`form.${field}`]: value });
   },
 
   onScoreChange(e) {
@@ -27,6 +38,7 @@ Page({
 
   async submitEval() {
     const { form, booking } = this.data;
+    if (!booking) return;
     if (!form.lateOrLeave) { util.showToast('请回答第一个问题'); return; }
     if (!form.solved)       { util.showToast('请回答第二个问题'); return; }
 
@@ -36,6 +48,7 @@ Page({
       util.setStorage(`eval_${booking.slotId}`, { ...form, submitTime: util.formatDateTime(new Date()) });
       this.setData({ submitted: true });
       util.showToast('评价提交成功！', 'success');
+      setTimeout(() => { dd.navigateBack({ delta: 1 }); }, 2000);
     } catch (e) {
       util.showToast('提交失败，请重试');
     } finally {

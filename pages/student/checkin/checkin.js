@@ -8,6 +8,7 @@ Page({
     checkinDone: false,
     checkinTime: '',
     countdown: '',
+    expired: false,
     _timer: null,
   },
 
@@ -31,9 +32,11 @@ Page({
     const diff = startTs - Date.now();
     // 开课前30min ~ 开课后10min 可签到
     const canCheckin = diff <= 30 * 60 * 1000 && diff >= -10 * 60 * 1000;
-    this.setData({ canCheckin });
+    // 签到窗口已关闭（开课后超过10分钟）
+    const expired = diff < -10 * 60 * 1000;
+    this.setData({ canCheckin, expired });
 
-    if (!canCheckin && diff > 0) {
+    if (!canCheckin && !expired && diff > 0) {
       const timer = setInterval(() => {
         const d = booking.startTs - Date.now();
         if (d <= 30 * 60 * 1000) {

@@ -15,6 +15,12 @@
     </view>
 
     <!-- 未开放签到 -->
+    <view a:elif="{{expired}}" class="checkin-wait">
+      <view class="wait-icon">⛔</view>
+      <view class="wait-text">签到已截止</view>
+      <view class="wait-hint">上课超过10分钟未签到，视为迟到</view>
+    </view>
+
     <view a:elif="{{!canCheckin}}" class="checkin-wait">
       <view class="wait-icon">⏰</view>
       <view class="wait-text">距签到开放时间</view>

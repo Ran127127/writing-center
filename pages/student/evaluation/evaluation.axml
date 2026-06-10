@@ -8,8 +8,8 @@
   </view>
 
   <!-- 评价表单 -->
-  <view a:else>
-    <view class="card" a:if="{{booking}}">
+  <view a:elif="{{booking}}">
+    <view class="card">
       <view class="eval-course">课程：{{booking.date}} {{booking.day}} {{booking.time}}</view>
     </view>
 
@@ -18,22 +18,22 @@
       <view class="q-title">1. 本次上课是否有迟到或早退？<text class="required">*</text></view>
       <view class="radio-group">
         <view class="radio-item {{form.lateOrLeave === '无' ? 'radio-selected' : ''}}"
-              onTap="onInput" data-field="lateOrLeave" data-value="无">无</view>
+              onTap="onRadioSelect" data-field="lateOrLeave" data-value="无">无</view>
         <view class="radio-item {{form.lateOrLeave === '迟到' ? 'radio-selected' : ''}}"
-              onTap="onInput" data-field="lateOrLeave" data-value="迟到">迟到</view>
+              onTap="onRadioSelect" data-field="lateOrLeave" data-value="迟到">迟到</view>
         <view class="radio-item {{form.lateOrLeave === '早退' ? 'radio-selected' : ''}}"
-              onTap="onInput" data-field="lateOrLeave" data-value="早退">早退</view>
+              onTap="onRadioSelect" data-field="lateOrLeave" data-value="早退">早退</view>
       </view>
 
       <!-- Q2 -->
       <view class="q-title">2. 您的问题是否在本次上课中得到了解决？<text class="required">*</text></view>
       <view class="radio-group">
         <view class="radio-item {{form.solved === '完全解决' ? 'radio-selected' : ''}}"
-              onTap="onInput" data-field="solved" data-value="完全解决">完全解决</view>
+              onTap="onRadioSelect" data-field="solved" data-value="完全解决">完全解决</view>
         <view class="radio-item {{form.solved === '部分解决' ? 'radio-selected' : ''}}"
-              onTap="onInput" data-field="solved" data-value="部分解决">部分解决</view>
+              onTap="onRadioSelect" data-field="solved" data-value="部分解决">部分解决</view>
         <view class="radio-item {{form.solved === '未解决' ? 'radio-selected' : ''}}"
-              onTap="onInput" data-field="solved" data-value="未解决">未解决</view>
+              onTap="onRadioSelect" data-field="solved" data-value="未解决">未解决</view>
       </view>
 
       <!-- Q3 -->

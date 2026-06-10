@@ -36,5 +36,8 @@
     </view>
   </block>
 
+  <!-- 查看预约学生列表 -->
+  <button class="btn btn-primary" style="margin-top:24rpx;" onTap="toConfirmPage">查看预约学生列表</button>
+
   <view style="height:40rpx;"></view>
 </view>

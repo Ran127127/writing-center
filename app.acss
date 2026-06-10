@@ -50,7 +50,7 @@ page {
 .btn-primary  { background:#1677ff; color:#fff; }
 .btn-danger   { background:#ff4d4f; color:#fff; }
 .btn-default  { background:#f0f0f0; color:#333; }
-.btn-small    { height:64rpx; line-height:64rpx; font-size:26rpx; border-radius:32rpx; }
+.btn-small    { height:64rpx; line-height:64rpx; font-size:26rpx; border-radius:32rpx; display:inline-block; width:auto; padding:0 28rpx; }
 
 /* ── 分区标题 ── */
 .section-title {

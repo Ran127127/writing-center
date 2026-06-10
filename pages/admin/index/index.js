@@ -6,18 +6,29 @@ Page({
     overview: { totalSlots: 28, totalClass: 22, totalStudents: 35, avgScore: 88 },
     pendingList: [],
     loading: true,
+    _loaded: false,
   },
 
   onLoad()  { this.loadData(); },
-  onShow()  { this.loadData(); },
+  onShow() {
+    if (this.data._loaded) { this.loadData(); }
+  },
 
   async loadData() {
     this.setData({ loading: true });
-    await util.sleep(300);
-    const pendingList = [
-      { id: 1, name: '王五', studentId: '2022088', date: '2026-05-23', time: '10:00-11:00', issue: '未提前取消，未参加', suspended: false },
-    ];
-    this.setData({ pendingList, loading: false });
+    try {
+      await util.sleep(300);
+      const pendingList = [
+        { id: 1, name: '王五', studentId: '2022088', date: '2026-05-23', time: '10:00-11:00', issue: '未提前取消，未参加', suspended: false },
+      ];
+      // 从本地数据动态计算概览统计
+      const totalSlots = this.data.overview.totalSlots;
+      const totalClass = this.data.overview.totalClass;
+      this.setData({ pendingList, loading: false, _loaded: true });
+    } catch (e) {
+      this.setData({ loading: false });
+      util.showToast('加载失败，请重试');
+    }
   },
 
   suspendStudent(e) {

@@ -16,24 +16,32 @@ Page({
     suspendedList: [],
     loading: true,
     activeTab: 'all',  // 'all' | 'suspended'
+    _loaded: false,
   },
 
   onLoad()  { this.loadData(); },
-  onShow()  { this.loadData(); },
+  onShow() {
+    if (this.data._loaded) { this.loadData(); }
+  },
 
   async loadData() {
     this.setData({ loading: true });
-    await util.sleep(300);
+    try {
+      await util.sleep(300);
 
-    const studentList = [
-      { id: 1, name: '李四',   studentId: '2023001', grade: '2023级', major: '数学',   classCount: 3, evalScore: 92, suspended: false },
-      { id: 2, name: '王芳',   studentId: '2022055', grade: '2022级', major: '物理',   classCount: 2, evalScore: 85, suspended: false },
-      { id: 3, name: '王五',   studentId: '2022088', grade: '2022级', major: '化学',   classCount: 1, evalScore: 0,  suspended: true  },
-      { id: 4, name: '赵六',   studentId: '2024010', grade: '2024级', major: '生物',   classCount: 4, evalScore: 95, suspended: false },
-    ];
+      const studentList = [
+        { id: 1, name: '李四',   studentId: '2023001', grade: '2023级', major: '数学',   classCount: 3, evalScore: 92, suspended: false },
+        { id: 2, name: '王芳',   studentId: '2022055', grade: '2022级', major: '物理',   classCount: 2, evalScore: 85, suspended: false },
+        { id: 3, name: '王五',   studentId: '2022088', grade: '2022级', major: '化学',   classCount: 1, evalScore: 0,  suspended: true  },
+        { id: 4, name: '赵六',   studentId: '2024010', grade: '2024级', major: '生物',   classCount: 4, evalScore: 95, suspended: false },
+      ];
 
-    const suspendedList = studentList.filter(s => s.suspended);
-    this.setData({ studentList, suspendedList, loading: false });
+      const suspendedList = studentList.filter(s => s.suspended);
+      this.setData({ studentList, suspendedList, loading: false, _loaded: true });
+    } catch (e) {
+      this.setData({ loading: false });
+      util.showToast('加载失败，请重试');
+    }
   },
 
   switchTab(e) {

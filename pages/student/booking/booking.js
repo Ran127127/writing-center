@@ -10,10 +10,11 @@ Page({
       materials: [],   // [{name, path}]
     },
     submitting: false,
+    _checkInterval: null,
   },
 
   onLoad(options) {
-    this.setData({ slotId: options.slotId, date: options.date, time: options.time, day: options.day });
+    this.setData({ slotId: options.slotId, date: options.date, time: options.time, day: decodeURIComponent(options.day || '') });
 
     // ── 钉钉免登：自动预填姓名 / 工号 ──────────────────────────
     // app.globalData.userInfo 在 app.js 的 ddLogin 成功后已填充
@@ -26,13 +27,21 @@ Page({
     }
     // 若 globalData 还未就绪（首次冷启动），监听赋值
     if (!userInfo) {
-      const checkInterval = setInterval(() => {
-        const u = app.globalData.userInfo;
-        if (u) {
-          clearInterval(checkInterval);
-          this.setData({ 'form.name': u.name || '', 'form.studentId': u.staffId || '' });
-        }
-      }, 500);
+      this.setData({
+        _checkInterval: setInterval(() => {
+          const u = app.globalData.userInfo;
+          if (u) {
+            clearInterval(this.data._checkInterval);
+            this.setData({ _checkInterval: null, 'form.name': u.name || '', 'form.studentId': u.staffId || '' });
+          }
+        }, 500),
+      });
+    }
+  },
+
+  onUnload() {
+    if (this.data._checkInterval) {
+      clearInterval(this.data._checkInterval);
     }
   },
 
@@ -64,6 +73,7 @@ Page({
     if (!form.studentId) { util.showToast('请填写学号');           return; }
     if (!form.grade || !form.major) { util.showToast('请填写年级和专业'); return; }
     if (!form.problem)   { util.showToast('请填写需要解决的问题'); return; }
+    if (form.problem.length < 20) { util.showToast('问题描述至少需要20个字'); return; }
 
     this.setData({ submitting: true });
     try {

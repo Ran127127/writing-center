@@ -13,9 +13,12 @@
   box-shadow:0 2rpx 10rpx rgba(0,0,0,.05);
 }
 .slot-full { opacity:.55; }
+.slot-left { flex:1; }
 .slot-day  { font-size:32rpx; font-weight:700; color:#1677ff; margin-bottom:6rpx; }
 .slot-date { font-size:24rpx; color:#888; margin-bottom:4rpx; }
 .slot-time { font-size:26rpx; color:#444; }
 .slot-right{ text-align:right; }
-.remain-num{ font-size:26rpx; color:#09b56d; margin-bottom:8rpx; display:block; }
-.full-text  { font-size:26rpx; color:#ff4d4f; margin-bottom:8rpx; display:block; }
+.slot-remain{ margin-bottom:8rpx; }
+.remain-num{ font-size:26rpx; color:#09b56d; display:block; }
+.full-text  { font-size:26rpx; color:#ff4d4f; display:block; }
+.notice-text{ font-size:26rpx; color:#1677ff; }
